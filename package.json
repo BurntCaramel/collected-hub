@@ -4,7 +4,7 @@
   "description": "Describe web here",
   "private": true,
   "scripts": {
-    "build": "nwb build-preact-app",
+    "build": "nwb build-preact-app && cp _redirects dist/_redirects",
     "clean": "nwb clean-app",
     "start": "nwb serve-preact-app",
     "test": "nwb test-preact",
