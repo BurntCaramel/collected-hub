@@ -1,19 +1,52 @@
 import './App.css'
 
 import {h, Component} from 'preact'
+import { listJSMolecules } from './api/github'
+import GitHubFile from './components/GitHub/File'
+import GitHubFileContent from './organisms/GitHub/FileContent'
 
 export default class App extends Component {
-  render() {
+  state = {
+    error: null,
+    jsComponents: null,
+    activePath: null
+  }
+
+  render(props, {
+    jsComponents,
+    activePath
+  }) {
     return <div className="App">
-      <div className="App-heading App-flex">
-        <h2>
-          Welcome to <img alt="Preact" src={require('./preact-name.svg')} style="height: 1.8em; vertical-align: middle;"/>
-        </h2>
-      </div>
-      <div className="App-instructions App-flex">
-        <img className="App-logo" src={require('./preact-logo.svg')}/>
-        <p>Edit <code>src/App.js</code> and save to hot reload your changes.</p>
-      </div>
+      { jsComponents ? (
+        jsComponents.map((item) => (
+          <button
+            className={ item.path === activePath ? 'active' : '' }
+            onClick={ () => { this.setState({ activePath: item.path }) } }
+          >
+            <GitHubFile
+              key={ item.path }
+              { ...item }
+            />
+          </button>
+        ))
+      ) : (
+        'Loading…'
+      ) }
+      { !!activePath &&
+        <GitHubFileContent
+          url={ jsComponents.find(a => a.path === activePath).url }
+        />
+      }
     </div>
+  }
+
+  componentDidMount() {
+    listJSMolecules({ repo: 'RoyalIcing/lofi.design' })
+      .then(({ data }) => {
+        this.setState({ jsComponents: data.items })
+      })
+      .catch((error) => {
+        this.setState({ error })
+      })
   }
 }
