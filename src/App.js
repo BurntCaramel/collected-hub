@@ -1,27 +1,22 @@
 import './App.css'
 
 import {h, Component} from 'preact'
-import createHistory from 'history/createBrowserHistory'
-import linkState from 'linkstate'
 import { listJSAllComponents } from './api/github'
 import SearchRepos from './organisms/GitHub/SearchRepos'
-import GitHubRepoComponents from './organisms/GitHub/RepoComponents'
-import GitHubFileContent from './organisms/GitHub/FileContent'
+import RepoComponents from './organisms/GitHub/RepoComponents'
+import ListRepos from './organisms/GitHub/ListRepos'
 import Welcome from './organisms/Welcome'
-//import router from './router'
+import GitHubHeader from './organisms/GitHub/Header'
 import stateForPath from './router'
+import history, { getPath, goToPath } from './router/history'
+import Link, { onClickLink } from './router/Link'
 
 export default class App extends Component {
-  history = createHistory()
-  goToPath = this.history.push.bind(this.history)
-  onClickLink = ({ target: { href } }) => this.history.push(href)
-  Link = (props) => <a { ...props } onClick={ this.onClickLink } />
-
   state = {
-    path: (history.location || window.location).pathname,
+    path: getPath(),
     orgName: null,
     repoName: null,
-    ...stateForPath((history.location || window.location).pathname),
+    ...stateForPath(getPath()),
     error: null,
     jsComponents: null,
     activePath: null
@@ -36,22 +31,34 @@ export default class App extends Component {
     activePath
   }) {
     return <div className="App">
-      { path }
+      { orgName &&
+        <GitHubHeader
+          ownerName={ orgName }
+          repoName={ repoName }
+        />
+      }
       <SearchRepos
         orgName={ orgName }
         repoName={ repoName }
-        goToPath={ this.goToPath }
+        goToPath={ goToPath }
       />
       { notFound &&
         <p>Not found</p>
-      || orgName && repoName && (
-        <GitHubRepoComponents
-          orgName={ orgName }
-          repoName={ repoName }
-          jsComponents={ jsComponents }
-          activePath={ activePath }
-          onChangeActivePath={ (activePath) => this.setState({ activePath }) }
-        />
+      || orgName && (
+        repoName && (
+          <RepoComponents
+            orgName={ orgName }
+            repoName={ repoName }
+            jsComponents={ jsComponents }
+            activePath={ activePath }
+            onChangeActivePath={ (activePath) => this.setState({ activePath }) }
+          />
+        ) || (
+          <ListRepos
+            ownerName={ orgName }
+            Link={ Link }
+          />
+        )
       ) || (
         <Welcome />
       ) }
@@ -72,7 +79,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    this.stopHistory = this.history.listen((location) =>
+    this.stopHistory = history.listen((location) =>
       this.setState(stateForPath(location.pathname, this.props))
     )
 

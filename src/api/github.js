@@ -4,6 +4,8 @@ const api = axios.create({
   baseURL: 'https://api.github.com'
 })
 
+export const listRepos = (owner) => api.get(`/users/${owner}/repos`)
+
 const searchCode = (queryParts) => api.get('/search/code', {
   params: {
     q: queryParts.join(' ')

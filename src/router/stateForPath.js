@@ -16,7 +16,7 @@ export default (stateHandlers) => (path, props) => {
   }
   
   const [ first, ...rest ] = pieces
-  if (stateHandlers[first] && stateHandlers[first].length <= (rest.length + 1)) {
+  if (stateHandlers[first]) {
     return stateHandlers[first].apply(null, [ props, ...rest ])
   }
   
