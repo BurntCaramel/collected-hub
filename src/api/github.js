@@ -11,7 +11,7 @@ const searchCode = (queryParts) => api.get('/search/code', {
 })
 
 // https://api.github.com/search/code?q=molecules+in:path+language:js+repo:RoyalIcing/lofi.design
-export const listJSComponents = ({
+const listJSComponents = ({
   repo
 }) => searchCode([
   'components',
@@ -19,8 +19,9 @@ export const listJSComponents = ({
   'language:js',
   `repo:${repo}`
 ])
+.then(res => res.data.items)
 
-export const listJSMolecules = ({
+const listJSMolecules = ({
   repo
 }) => searchCode([
   'molecules',
@@ -28,6 +29,15 @@ export const listJSMolecules = ({
   'language:js',
   `repo:${repo}`
 ])
+.then(res => res.data.items)
+
+export const listJSAllComponents = ({
+  repo
+}) => Promise.all([
+  listJSComponents({ repo }),
+  listJSMolecules({ repo })
+])
+.then(arrayOfItems => [].concat(...arrayOfItems))
 
 export const loadContents = ({
   url

@@ -3,7 +3,7 @@ import './App.css'
 import {h, Component} from 'preact'
 import createHistory from 'history/createBrowserHistory'
 import linkState from 'linkstate'
-import { listJSMolecules } from './api/github'
+import { listJSAllComponents } from './api/github'
 import SearchRepos from './organisms/GitHub/SearchRepos'
 import GitHubRepoComponents from './organisms/GitHub/RepoComponents'
 import GitHubFileContent from './organisms/GitHub/FileContent'
@@ -61,9 +61,9 @@ export default class App extends Component {
   load(current, prev) {
     const { orgName, repoName } = current
     if (!!orgName && !!repoName && orgName !== prev.orgName || repoName !== prev.repoName) {
-      listJSMolecules({ repo: `${orgName}/${repoName}` })
-        .then(({ data }) => {
-          this.setState({ jsComponents: data.items })
+      listJSAllComponents({ repo: `${orgName}/${repoName}` })
+        .then((jsComponents) => {
+          this.setState({ jsComponents })
         })
         .catch((error) => {
           this.setState({ error })
