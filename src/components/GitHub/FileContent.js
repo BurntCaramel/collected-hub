@@ -1,8 +1,17 @@
 import {h} from 'preact'
+import makeOrganism from 'preact-organism'
+const JSCodeBlock = import('../JSCodeBlock')
 
-export default ({
+const PlainCodeBlock = ({
+  children
+}) => (
+  <pre><code>{ children }</code></pre>
+)
+
+export default makeOrganism(({
   size,
-  content
+  content,
+  CodeBlock
 }) => (
   <div>
     <dl>
@@ -10,8 +19,15 @@ export default ({
       <dd>{ size }</dd>
     </dl>
 
-    <pre>
-      <code>{ content }</code>
-    </pre>
+    { content &&
+      <CodeBlock>{ content }</CodeBlock>
+    }
   </div>
-)
+), {
+  initial: () => ({
+    CodeBlock: PlainCodeBlock
+  }),
+  load: () => (
+    JSCodeBlock.then(module => ({ CodeBlock: module.default }))
+  )
+})
