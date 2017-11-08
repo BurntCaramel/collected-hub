@@ -2,6 +2,8 @@ import {h} from 'preact'
 
 const dropExtension = (name) => name.split('.').slice(0, -1).join('.')
 
+const humanize = (camelCase) => camelCase.replace(/([a-z])([A-Z])/g, '$1 $2')
+
 export default ({
   name,
   path,
@@ -9,7 +11,7 @@ export default ({
   url
 }) => (
   <div>
-    <h2>{ dropExtension(name) }</h2>
+    <h2>{ humanize(dropExtension(name)) }</h2>
     <dl>
       <dt>Path</dt>
       <dd>{ path }</dd>

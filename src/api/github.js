@@ -31,7 +31,4 @@ export const listJSMolecules = ({
 
 export const loadContents = ({
   url
-}) => {
-  console.log('loadContents', url)
-  return axios.get(url)
-}
+}) => axios.get(url)

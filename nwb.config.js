@@ -1,3 +1,8 @@
 module.exports = {
-  type: 'preact-app'
+  type: 'preact-app',
+  devServer: {
+    historyApiFallback: {
+      disableDotRule: true,
+    }
+  }
 }
