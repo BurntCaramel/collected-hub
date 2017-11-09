@@ -11,6 +11,7 @@ import Nav from './components/Nav'
 import stateForPath from './router'
 import history, { getPath, goToPath } from './router/history'
 import Link from './router/Link'
+import grad1 from './grad1.svg'
 
 export default class App extends Component {
   state = {
@@ -68,6 +69,7 @@ export default class App extends Component {
       ) || (
         <Welcome />
       ) }
+      <img src={ grad1 } />
     </div>
   }
 
