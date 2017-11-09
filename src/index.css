@@ -13,6 +13,13 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
+.flex-column {
+  flex-direction: column;
+}
+.justify-content-between {
+  justify-content: space-between;
+}
+
 a {
   text-decoration: none;
   color: rgb(222, 3, 87);
@@ -35,7 +42,9 @@ strong {
   font-weight: bold;
 }
 
-button {
+button,
+.button
+{
   display: block;
   width: 100%;
   padding: 0.5rem 1rem;
@@ -44,10 +53,15 @@ button {
   border: none;
   outline-color: rgb(247, 230, 103);
 }
-button:focus, button:hover {
+button:focus, button:hover,
+.button:focus, .button:hover
+{
   background-color: rgb(247, 230, 103);
+  text-decoration: none;
 }
-button.active {
+button.active,
+.button.active
+{
   color: rgb(247, 230, 103);
   background-color: rgb(38, 38, 38);
 }
@@ -57,9 +71,11 @@ nav ul {
   flex-wrap: wrap;
   list-style: none;
 }
-nav li {
+.nav-item {
   flex-shrink: 0;
-  padding: 0.5em 0.5em;
+}
+.nav-link {
+  padding: 0.666em;
 }
 
 dl {
@@ -91,11 +107,4 @@ input {
   padding: 0.333em 0.5em;
   border-radius: 0.25em;
   border: 1px solid #bbb;
-}
-
-.flex-column {
-  flex-direction: column;
-}
-.justify-content-between {
-  justify-content: space-between;
 }
