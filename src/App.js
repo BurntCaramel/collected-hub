@@ -7,9 +7,10 @@ import RepoComponents from './organisms/GitHub/RepoComponents'
 import ListRepos from './organisms/GitHub/ListRepos'
 import Welcome from './organisms/Welcome'
 import GitHubHeader from './organisms/GitHub/Header'
+import Nav from './components/Nav'
 import stateForPath from './router'
 import history, { getPath, goToPath } from './router/history'
-import Link, { onClickLink } from './router/Link'
+import Link from './router/Link'
 
 export default class App extends Component {
   state = {
@@ -31,17 +32,22 @@ export default class App extends Component {
     activePath
   }) {
     return <div className="App">
+      <Nav>
+        <div>
+          <Link href='/'>Collected Hub</Link>
+        </div>
+        <SearchRepos
+          orgName={ orgName }
+          repoName={ repoName }
+          goToPath={ goToPath }
+        />
+      </Nav>
       { orgName &&
         <GitHubHeader
           ownerName={ orgName }
           repoName={ repoName }
         />
       }
-      <SearchRepos
-        orgName={ orgName }
-        repoName={ repoName }
-        goToPath={ goToPath }
-      />
       { notFound &&
         <p>Not found</p>
       || orgName && (

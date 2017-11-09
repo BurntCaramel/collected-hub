@@ -6,10 +6,10 @@ export default ({
   repoName
 }) => (
   <h1>
-    <Link href={ `/repo/${ownerName}` }>{ ownerName }</Link>
+    <Link to={{ ownerName }}>{ ownerName }</Link>
     { repoName && [
       ' / ',
-      <Link href={ `/repo/${ownerName}/${repoName}` }>
+      <Link to={{ ownerName, repoName }}>
         <strong>{ repoName }</strong>
       </Link>
     ] }

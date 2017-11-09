@@ -1,20 +1,19 @@
 import {h} from 'preact'
 import Link from '../router/Link'
+import classes from './classes'
 
-export const NavItem = ({
-  href,
-  children
-}) => (
+export const NavItem = (props) => (
   <li>
-    <Link href={ href }>{ children }</Link>
+    <Link { ...props } />
   </li>
 )
 
 export default ({
+  column = false,
   children
 }) => (
   <nav>
-    <ul>
+    <ul className={ classes(['justify-content-between', column && 'flex-column']) }>
       { children }
     </ul>
   </nav>

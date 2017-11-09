@@ -54,9 +54,11 @@ button.active {
 
 nav ul {
   display: flex;
+  flex-wrap: wrap;
   list-style: none;
 }
 nav li {
+  flex-shrink: 0;
   padding: 0.5em 0.5em;
 }
 
@@ -83,4 +85,17 @@ pre {
 }
 tt, code {
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+input {
+  padding: 0.333em 0.5em;
+  border-radius: 0.25em;
+  border: 1px solid #bbb;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+.justify-content-between {
+  justify-content: space-between;
 }

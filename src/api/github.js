@@ -33,11 +33,22 @@ const listJSMolecules = ({
 ])
 .then(res => res.data.items)
 
+const listJSReactDir = ({
+  repo
+}) => searchCode([
+  'react',
+  'in:path',
+  'language:js',
+  `repo:${repo}`
+])
+.then(res => res.data.items)
+
 export const listJSAllComponents = ({
   repo
 }) => Promise.all([
   listJSComponents({ repo }),
-  listJSMolecules({ repo })
+  listJSMolecules({ repo }),
+  listJSReactDir({ repo })
 ])
 .then(arrayOfItems => [].concat(...arrayOfItems))
 

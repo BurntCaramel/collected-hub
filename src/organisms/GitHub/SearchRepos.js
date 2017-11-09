@@ -8,8 +8,10 @@ export default ({ goToPath, orgName, repoName }) => <div>
       goToPath(`/repo/${elements.repoName.value}`)
     } }
   >
-    <input name='repoName' value={
-      orgName && repoName && `${orgName}/${repoName}`
-    } />
+    <input
+      name='repoName'
+      value={ orgName && repoName && `${orgName}/${repoName}` }
+      placeholder='Enter user/repo name'
+    />
   </form>
 </div>

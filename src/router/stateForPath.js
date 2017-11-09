@@ -1,5 +1,3 @@
-import {h} from 'preact'
-
 export default (stateHandlers) => (path, props) => {
   let pieces = path.split('/')
 
