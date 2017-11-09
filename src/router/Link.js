@@ -5,13 +5,14 @@ import pathForState from './pathForState'
 export const onClickLink = ({ target: { href } }) => this.history.push(href)
 
 const Link = (props) => {
-  let href = props.href
-  if (props.to) {
-    href = pathForState(props.to)
+  let { href, to, ...rest } = props
+  if (to) {
+    href = pathForState(to)
   }
+
   return (
     <a
-      { ...props }
+      { ...rest }
       href={ href }
       onClick={ this.onClickLink }
     />
