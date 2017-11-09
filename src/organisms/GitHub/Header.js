@@ -5,7 +5,7 @@ export default ({
   ownerName,
   repoName
 }) => (
-  <h1>
+  <h1 className='text-lg'>
     <Link to={{ ownerName }}>{ ownerName }</Link>
     { repoName && [
       ' / ',

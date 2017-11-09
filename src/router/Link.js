@@ -13,7 +13,7 @@ const Link = (props) => {
 
   let classList = [className, 'no-underline']
   if (button) {
-    classList.push('inline-block bg-purple hover:bg-purple-dark text-white font-bold py-2 px-3 rounded')
+    classList.push('inline-block bg-key hover:bg-purple-dark text-white font-bold py-2 px-3 rounded')
   }
   else {
     classList.push('hover:underline')

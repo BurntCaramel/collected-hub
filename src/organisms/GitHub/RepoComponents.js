@@ -1,6 +1,7 @@
 import {h} from 'preact'
 import GitHubFile from '../../components/GitHub/File'
 import GitHubFileContent from './FileContent'
+import classes from '../../components/classes'
 
 export default ({
   jsComponents,
@@ -10,7 +11,10 @@ export default ({
   { jsComponents ? (
     jsComponents.map((item) => (
       <button
-        className={ item.path === activePath ? 'active' : '' }
+        className={ classes([
+          'w-full text-left p-2',
+          item.path === activePath && 'active'
+        ]) }
         onClick={ () => onChangeActivePath(item.path) }
       >
         <GitHubFile

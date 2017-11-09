@@ -127,6 +127,9 @@ var colors = {
   'pink-light': '#fa7ea8',
   'pink-lighter': '#ffbbca',
   'pink-lightest': '#ffebef',
+
+  'key': '#e2c',
+  'key2': '#4de'
 }
 
 module.exports = {

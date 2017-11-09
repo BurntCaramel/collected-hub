@@ -14,9 +14,6 @@ export default ({
 }) => (
   <div>
     <h2>{ humanize(dropExtension(name)) }</h2>
-    <dl>
-      <dt>Path</dt>
-      <dd>{ path }</dd>
-    </dl>
+    <p>{ path }</p>
   </div>
 )
