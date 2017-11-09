@@ -12,6 +12,7 @@ export default ({ goToPath, orgName, repoName }) => <div>
       name='repoName'
       value={ orgName && repoName && `${orgName}/${repoName}` }
       placeholder='Enter user/repo name'
+      className='appearance-none border rounded w-full py-2 px-3 text-grey-darker'
     />
   </form>
 </div>

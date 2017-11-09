@@ -3,10 +3,10 @@ import Link from '../router/Link'
 import classes from './classes'
 
 export const NavItem = (props) => (
-  <li className='nav-item'>
+  <li className='mb-1'>
     <Link
+      button
       { ...props }
-      className={ classes(['nav-link', props.className]) }
     />
   </li>
 )
@@ -16,7 +16,7 @@ export default ({
   children
 }) => (
   <nav>
-    <ul className={ classes(['justify-content-between', column && 'flex-column']) }>
+    <ul className={ classes(['list-reset', 'justify-content-between', column && 'flex-column']) }>
       { children }
     </ul>
   </nav>

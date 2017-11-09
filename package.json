@@ -21,7 +21,8 @@
     "react-syntax-highlighter": "^5.8.0"
   },
   "devDependencies": {
-    "nwb": "0.19.x"
+    "nwb": "0.19.x",
+    "tailwindcss": "^0.1.5"
   },
   "author": "",
   "license": "MIT",

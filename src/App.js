@@ -34,7 +34,7 @@ export default class App extends Component {
   }) {
     return <div className="App">
       <Nav>
-        <div>
+        <div className='text-lg'>
           <Link href='/'>Collected Hub</Link>
         </div>
         <SearchRepos
