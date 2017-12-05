@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "nwb": "0.19.x",
-    "tailwindcss": "^0.1.5"
+    "tailwindcss": "^0.3.0"
   },
   "author": "",
   "license": "MIT",
