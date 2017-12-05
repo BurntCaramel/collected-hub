@@ -8,6 +8,9 @@ export default (props) => <div>
     <NavItem to={{ ownerName: 'seek-oss', repoName: 'seek-style-guide' }} className='button'>
       Seek Style Guide
     </NavItem>
+    <NavItem to={{ ownerName: 'stripe', repoName: 'react-stripe-elements' }} className='button'>
+      React Stripe Elements
+    </NavItem>
     <NavItem to={{ ownerName: 'RoyalIcing' }} className='button'>
       @RoyalIcing
     </NavItem>
