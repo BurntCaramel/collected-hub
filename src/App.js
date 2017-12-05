@@ -25,6 +25,7 @@ export default class App extends Component {
   }
 
   render(props, {
+    error,
     path,
     notFound,
     orgName,
@@ -43,6 +44,9 @@ export default class App extends Component {
           goToPath={ goToPath }
         />
       </Nav>
+      { error &&
+        <p>{ error.message }</p>
+      }
       { orgName &&
         <GitHubHeader
           ownerName={ orgName }
